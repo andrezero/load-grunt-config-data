@@ -22,12 +22,12 @@ function run() {
         execCommand('grunt build');
     }
     else if (process.env.TAG) {
-        console.log('Not on Travis CI environment');
+        console.log(('CI: ci-release: "%s"', process.env.TAG).yellow.bold);
         execCommand('grunt ci-release');
         execCommand('npm publish');
     }
     else {
-        console.log('Not on Travis CI environment');
+        console.log(('CI: ci-build: "%s"', process.env.BRANCH).yellow.bold);
         execCommand('grunt ci-build');
     }
 }
