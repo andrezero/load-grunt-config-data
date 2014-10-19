@@ -40,13 +40,52 @@ module.exports = function (grunt) {
                     mode: 'VERIFY_ONLY'
                 }
             }
+        },
+
+        bump: {
+
+            options: {
+
+                files: ['package.json'],
+                commit: true,
+                commitMessage: 'chore(release): v%VERSION%',
+                commitFiles: [
+                    'package.json',
+                    'CHANGELOG.md'
+                ],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: false,
+                pushTo: 'origin'
+            }
+        },
+
+        changelog: {
+
+            options: {
+                dest: 'CHANGELOG.md'
+            }
         }
     };
 
-    // Default task.
-    grunt.registerTask('default', ['jshint', 'jsbeautifier']);
+    grunt.registerTask('test', [
 
-    //
+    ]);
+
+    grunt.registerTask('build', [
+        'jshint',
+        'jsbeautifier'
+    ]);
+
+    grunt.registerTask('ci-build', [
+        'js-hint',
+        'jsbeautifier:verify',
+        //'test'
+        'changelog',
+        'bump-commit'
+    ]);
+
     grunt.initConfig(config);
 
 };
