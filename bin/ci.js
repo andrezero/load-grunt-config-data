@@ -1,25 +1,36 @@
 #!/usr/bin/env node
 var sh = require('execSync');
 var util = require('util');
+var colors = require('colors');
+var _ = require('underscore');
 
 function execCommand(command) {
-    console.log(util.format('Executing "%s"\n', command));
+    console.log(util.format('CI: Executing "%s"\n', command).bold);
     var exec = sh.exec(command);
     console.log(exec.stdout);
     if (exec.code) {
-        exit(exec.code);
+        throw new Error(exec.code);
     } else {
-        console.log(util.format('"%s": done.', command));
+        console.log(util.format('CI: "%s": OK.\n', command).green.bold);
     }
 }
 
-if (!process.env.TRAVIS) {
-    execCommand('grunt build');
+
+function run() {
+    if (!process.env.TRAVIS) {
+        console.warn('CI: WARNING: Not on Travis CI environment'.yellow.bold);
+        execCommand('grunt build');
+    }
+    else if (process.env.TAG) {
+        console.log('Not on Travis CI environment');
+        execCommand('grunt ci-release');
+        execCommand('npm publish');
+    }
+    else {
+        console.log('Not on Travis CI environment');
+        execCommand('grunt ci-build');
+    }
 }
-else if (process.env.TAG) {
-    execCommand('grunt ci-release');
-    execCommand('npm publish');
-}
-else {
-    execCommand('grunt ci-build');
-}
+
+run();
+console.error(('CI: OK.').green.bold);
