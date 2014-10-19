@@ -32,5 +32,7 @@ function run() {
     }
 }
 
+console.log(process.env);
+
 run();
 console.error(('CI: OK.').green.bold);
