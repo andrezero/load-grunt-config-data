@@ -1,4 +1,4 @@
-# load-grunt-config-data
+# load-grunt-config-data [![Build Status: Linux](https://travis-ci.org/andrezero/load-grunt-config-data.png?branch=master)](https://travis-ci.org/andrezero/load-grunt-config-data)
 
 > Load Grunt config files.
 
