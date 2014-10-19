@@ -82,7 +82,9 @@ module.exports = function (grunt) {
         'test'
     ]);
 
-    grunt.registerTask('ci-build', [
+    grunt.registerTask('ci-build', ['build']);
+
+    grunt.registerTask('ci-release', [
         'jshint',
         'jsbeautifier:verify',
         //'test'
