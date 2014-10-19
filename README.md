@@ -84,15 +84,15 @@ These are the main goals behind this particular one:
 
 ### Methods
 
-#### load(grunt, path|paths, [data]): object
+#### load(grunt, file|files, [data]): object
 
-Loads all files that match `path|paths` files, merges everything and returns the result. A deep clone of the optional
+Loads all files that match `file|files` files, merges everything and returns the result. A deep clone of the optional
 `data` argument is passed as a second argument to functions exported by loaded files.
 
 __Arguments:__
 
-- __grunt__ : `String|Array` - Grunt instance.
-- __path|paths__ : `String|Array` - One or more paths/files, may contain `glob` patterns, including `!negatives`.
+- __grunt__ : `Object` - Grunt instance.
+- __file|files__ : `String|Array` - One or more paths/files, may contain `glob` patterns, including `!negatives`.
 - __data__ : `Object` - Optional data you want to pass into functions exported by loaded files.
 
 __Returns:__
@@ -111,15 +111,15 @@ you, you can specify a file more than once, like in the example above. Worst cas
 in order to control which data prevails._
 
 
-#### merge(grunt, path|paths, config, [data])
+#### merge(grunt, file|files, config, [data])
 
-Loads all files that match `path|paths`, merges everything into the `config` argument. A deep clone of the optional
+Loads all files that match `file|files`, merges everything into the `config` argument. A deep clone of the optional
 `data` argument is passed as a second argument to functions exported by loaded files.
 
 __Arguments:__
 
-- __grunt__ : `String|Array` - Grunt instance.
-- __path|paths__ : `String|Array` - One or more paths/files, may contain `glob` patterns, including `!negatives`.
+- __grunt__ : `Object` - Grunt instance.
+- __file|files__ : `String|Array` - One or more paths/files, may contain `glob` patterns, including `!negatives`.
 - __config__ : `Object` - Loaded data is merged into this object.
 - __data__ : `Object` - Optional data you want to pass into functions exported by loaded files.
 

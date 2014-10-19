@@ -1,0 +1,47 @@
+{
+  "name": "load-grunt-config-data",
+  "version": "0.0.1",
+  "description": "Load Grunt config files.",
+  "author": {
+    "name": "Andre Torgal",
+    "url": "http://andretorgal.com/"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://andrezero.mit-license.org"
+    }
+  ],
+  "keywords": [
+    "grunt",
+    "gruntfile",
+    "utility",
+    "config",
+    "loader"
+  ],
+  "homepage": "https://github.com/andrezero/load-grunt-config-data",
+  "bugs": "https://github.com/andrezero/load-grunt-config-data/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andrezero/load-grunt-config-data"
+  },
+  "readmeFilename": "README.md",
+  "files": [
+    "LICENSE-MIT",
+    "lib"
+  ],
+  "main": "lib/load-grunt-config-data.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "glob": "~4.0.6"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.2",
+    "grunt-cli": "^0.1.12"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
