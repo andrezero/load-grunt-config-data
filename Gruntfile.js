@@ -46,7 +46,10 @@ module.exports = function (grunt) {
 
             options: {
 
-                files: ['package.json'],
+                files: [
+                    'package.json'
+                ],
+                updateConfigs: ['pkg'],
                 commit: true,
                 commitMessage: 'chore(release): v%VERSION%',
                 commitFiles: [
@@ -75,11 +78,12 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'jshint',
-        'jsbeautifier'
+        'jsbeautifier',
+        'test'
     ]);
 
     grunt.registerTask('ci-build', [
-        'js-hint',
+        'jshint',
         'jsbeautifier:verify',
         //'test'
         'changelog',
