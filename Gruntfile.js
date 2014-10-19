@@ -1,40 +1,53 @@
 'use strict';
 
-module.exports = function( grunt ){
+module.exports = function (grunt) {
 
-    require( 'load-grunt-tasks' )( grunt );
+    require('load-grunt-tasks')(grunt);
 
-    var configs = {
-        paths : {
-            "lib"   : ["lib/*.js"],
-            "build" : ["config/*.js*", "package.json", "Gruntfile.js"],
-            "test"  : ["test/**/*.js"]
+    var config = {
+
+        jshint: {
+
+            options: {
+                jshintrc: '.jshintrc'
+            },
+
+            all: [
+                'Gruntfile.js',
+                'lib/*.js'
+            ]
+        },
+
+        jsbeautifier: {
+
+            options: {
+                config: '.jsbeautifyrc'
+            },
+
+            modify: {
+                src: [
+                    'Gruntfile.js',
+                    'lib/*.js'
+                ]
+            },
+
+            verify: {
+                src: [
+                    'Gruntfile.js',
+                    'lib/*.js'
+                ],
+                options: {
+                    mode: 'VERIFY_ONLY'
+                }
+            }
         }
     };
-    var options = {
-        fallbackToFilename: true
-    };
-
-    var loadConfigs = require( './lib/load-grunt-configs' );
-
-    configs = loadConfigs( grunt, options, configs );
-
-    // Project configuration.
-    grunt.initConfig( configs );
 
     // Default task.
-    grunt.registerTask( 'default', ['jshint'] );
-    grunt.registerTask( 'vigilant', ['watch'] );
+    grunt.registerTask('default', ['jshint', 'jsbeautifier']);
 
-    grunt.registerTask( 'serve', function(target){
-        if('docs' === target){
-            grunt.task.run( [
-                'clean:tmp',
-                'markdown:docs',
-                'connect:docs',
-                'watch:docs'
-            ] );
-        }
-    } );
+    //
+    grunt.initConfig(config);
 
 };
+
