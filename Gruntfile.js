@@ -92,7 +92,7 @@ module.exports = function (grunt) {
         'test'
     ]);
 
-    grunt.registerTask('release', [
+    grunt.registerTask('pre-release', [
         'git-is-clean',
         'bump-only:prerelease',
         'changelog',
@@ -101,11 +101,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('ci-build', ['build']);
 
-    grunt.registerTask('ci-release', [
-        'git-is-clean',
-        'jshint',
-        'jsbeautifier:verify',
-        'test',
+    grunt.registerTask('release', [
+        'build',
         'bump'
     ]);
 
