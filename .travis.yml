@@ -17,3 +17,11 @@ script:
 env:
   global:
   - secure: eNuvFB8L/oXvys98y1Av2B0JLGb68kLFSI+dbOdlV4HWQTQ4yLJ8Fu7cAboi0G+oKCj7C2FCBVAGy5P3Ga0guhWRxfOayIN4ZK+Tc0rbX546t50p79D+5DwzTlxg66cCcIFLTwd00tGLIvyx5329DOq9yuyGBU3YQvyLF2AILS0=
+deploy:
+  provider: npm
+  email: andre.torgal@gmail.com
+  api_key:
+    secure: ltId4a/YOhwdmXTQIGtMHsUki3voOFWn6yrO0Fo+23Ri4itrRxY0FYtwpvxVf5D+j9OjmC8NMRCXcCyAIgFd9XHY/6K4/TvFodlF395AYVBhV+bHFSbfrCV38aSYsBdN2mXDs13zDxzmitx4r0V/2cHt90vjIFEQfK65xySMyVU=
+  on:
+    tags: true
+    repo: andrezero/load-grunt-config-data
