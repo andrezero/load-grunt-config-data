@@ -5,11 +5,10 @@ branches:
   only:
   - develop
   - master
-  - /^pre-release-v[0-9\.]+$/
 before_install:
   - git config --global user.email "ci@cork-labs.org"
   - git config --global user.name "Travis CI"
-  - git config --global push.default simple
+  - git config --global push.default matching
 script:
   - git remote set-url origin "https://${GH_TOKEN}@github.com/andrezero/load-grunt-config-data.git"
   - git config credential.helper "store --file=.git/credentials"

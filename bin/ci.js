@@ -9,7 +9,6 @@ function execCommand(command) {
     var exec = sh.exec(command);
     console.log(exec.stdout);
     if (exec.code) {
-        console.log(exec.stderr);
         process.exit(exec.code);
     } else {
         console.log(util.format('CI: "%s": OK.\n', command).green.bold);
