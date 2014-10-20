@@ -1,3 +1,12 @@
+<a name="0.0.5"></a>
+### 0.0.5 (2014-10-20)
+
+
+#### Bug Fixes
+
+* **build:** deploying to npm ([50cd6202](http://github.com/andrezero/load-grunt-config-data/commit/50cd6202b565580a3a6b220f1fb3ee1d9beb18f9))
+
+
 
 
 #### Bug Fixes
