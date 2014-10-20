@@ -3,9 +3,6 @@ node_js:
 - '0.10'
 script:
 - grunt ci-build
-env:
-  global:
-  - secure: eNuvFB8L/oXvys98y1Av2B0JLGb68kLFSI+dbOdlV4HWQTQ4yLJ8Fu7cAboi0G+oKCj7C2FCBVAGy5P3Ga0guhWRxfOayIN4ZK+Tc0rbX546t50p79D+5DwzTlxg66cCcIFLTwd00tGLIvyx5329DOq9yuyGBU3YQvyLF2AILS0=
 deploy:
   provider: npm
   email: andre.torgal@gmail.com
