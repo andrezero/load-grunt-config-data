@@ -1,3 +1,12 @@
+<a name="0.0.4-2"></a>
+### 0.0.4-2 (2014-10-20)
+
+
+#### Bug Fixes
+
+* **build:** squelch the message ([da930851](http://github.com/andrezero/load-grunt-config-data/commit/da93085156c3d8c2e53ae1f9d6858576c6b28775))
+
+
 <a name="0.0.4-1"></a>
 ### 0.0.4-1 (2014-10-20)
 
