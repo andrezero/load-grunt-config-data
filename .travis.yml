@@ -13,4 +13,5 @@ deploy:
     secure: ltId4a/YOhwdmXTQIGtMHsUki3voOFWn6yrO0Fo+23Ri4itrRxY0FYtwpvxVf5D+j9OjmC8NMRCXcCyAIgFd9XHY/6K4/TvFodlF395AYVBhV+bHFSbfrCV38aSYsBdN2mXDs13zDxzmitx4r0V/2cHt90vjIFEQfK65xySMyVU=
   on:
     tags: true
+    all_branches: true
     repo: andrezero/load-grunt-config-data
