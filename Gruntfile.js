@@ -8,16 +8,24 @@ module.exports = function (grunt) {
 
         pkg: require('./package.json'),
 
+        files: {
+
+            js_src: ['tasks/*.js'],
+            js_grunt: ['Gruntfile.js'],
+            js_all: [
+                'package.json',
+                '<%= files.js_src %>',
+                '<%= files.js_grunt %>'
+            ]
+        },
+
         jshint: {
 
             options: {
                 jshintrc: '.jshintrc'
             },
 
-            all: [
-                'Gruntfile.js',
-                'lib/*.js'
-            ]
+            all: '<%= files.js_all %>'
         },
 
         jsbeautifier: {
@@ -27,26 +35,15 @@ module.exports = function (grunt) {
             },
 
             modify: {
-                src: [
-                    'Gruntfile.js',
-                    'lib/*.js'
-                ]
+                src: ['<%= files.js_src %>', '<%= files.js_grunt %>']
             },
 
             verify: {
-                src: [
-                    'Gruntfile.js',
-                    'lib/*.js'
-                ],
+                src: ['<%= files.js_src %>', '<%= files.js_grunt %>'],
                 options: {
                     mode: 'VERIFY_ONLY'
                 }
             }
-        },
-
-        prerelease: {
-
-            commitMessage: 'chore: pre-release (bump + changelog)'
         },
 
         bump: {
