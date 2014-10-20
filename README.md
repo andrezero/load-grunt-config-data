@@ -275,16 +275,18 @@ module.exports = {
 An example `tasks` file, contains custom tasks.
 
 _Note: these tasks are not supposed to be loaded by the loader.
-Use [`grunt.loadTasks()`](http://gruntjs.com/api/grunt.task#grunt.task.loadtasks) for that purpose_
+Use [`grunt.loadTasks()`](http://gruntjs.com/api/grunt.task#grunt.task.loadtasks) for that purpose:_
 
 ```javascript
 // load configs
 config = loader.load(grunt, 'grunt/build.conf.js');
-loader.merge(grunt, 'grunt/options/, config);
+loader.merge(grunt, 'grunt/options/', config);
 loader.merge(grunt, 'grunt/config', config);
 
-// init grint and load custom tasks
+// init Grunt
 grunt.initConfig(config);
+
+// load custom tasks
 grunt.loadTasks('grunt/tasks');
 ```
 

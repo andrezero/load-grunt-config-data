@@ -15,24 +15,25 @@ function execCommand(command) {
     }
 }
 
-
 function run() {
+
+    var pkg = require('../package.json');
+
     if (!process.env.TRAVIS) {
         console.warn('CI: WARNING: Not on Travis CI environment'.yellow.bold);
         execCommand('grunt build');
     }
-    else if (process.env.TAG) {
-        console.log(('CI: ci-release: "%s"', process.env.TAG).yellow.bold);
-        execCommand('grunt ci-release');
-        execCommand('npm publish');
-    }
     else {
-        console.log(('CI: ci-build: "%s"', process.env.BRANCH).yellow.bold);
-        execCommand('grunt ci-build');
+        if (process.env.TRAVIS_BRANCH === 'master') {
+            console.log(util.format('CI: ci-release: "%s"', pkg.version, process.env.TRAVIS_TAG).yellow.bold);
+            execCommand('grunt ci-release');
+        }
+        else {
+            console.log(util.format('CI: ci-build: "%s"', process.env.TRAVIS_BRANCH).yellow.bold);
+            execCommand('grunt ci-build');
+        }
     }
 }
-
-console.log(process.env);
 
 run();
 console.error(('CI: OK.').green.bold);

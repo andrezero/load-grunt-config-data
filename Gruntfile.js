@@ -6,6 +6,8 @@ module.exports = function (grunt) {
 
     var config = {
 
+        pkg: require('./package.json'),
+
         jshint: {
 
             options: {
@@ -42,6 +44,11 @@ module.exports = function (grunt) {
             }
         },
 
+        prerelease: {
+
+            commitMessage: 'chore: pre-release (bump + changelog)'
+        },
+
         bump: {
 
             options: {
@@ -59,7 +66,7 @@ module.exports = function (grunt) {
                 createTag: true,
                 tagName: 'v%VERSION%',
                 tagMessage: 'Version %VERSION%',
-                push: false,
+                push: true,
                 pushTo: 'origin'
             }
         },
@@ -67,10 +74,13 @@ module.exports = function (grunt) {
         changelog: {
 
             options: {
-                dest: 'CHANGELOG.md'
+                dest: 'CHANGELOG.md',
+                template: 'changelog.tpl'
             }
         }
     };
+
+    grunt.initConfig(config);
 
     grunt.registerTask('test', [
 
@@ -82,17 +92,22 @@ module.exports = function (grunt) {
         'test'
     ]);
 
-    grunt.registerTask('ci-build', ['build']);
-
-    grunt.registerTask('ci-release', [
-        'jshint',
-        'jsbeautifier:verify',
-        //'test'
+    grunt.registerTask('release', [
+        'git-is-clean',
+        'bump-only:prerelease',
         'changelog',
         'bump-commit'
     ]);
 
-    grunt.initConfig(config);
+    grunt.registerTask('ci-build', ['build']);
+
+    grunt.registerTask('ci-release', [
+        'git-is-clean',
+        'jshint',
+        'jsbeautifier:verify',
+        'test',
+        'bump'
+    ]);
 
 };
 
