@@ -1,3 +1,12 @@
+<a name="0.0.4-1"></a>
+### 0.0.4-1 (2014-10-20)
+
+
+#### Bug Fixes
+
+* **build:** force travis remote to https to allow pushing ([3df6dcb8](http://github.com/andrezero/load-grunt-config-data/commit/3df6dcb8cd83d7c768861bdd680cce7a3f05baef))
+
+
 <a name="0.0.4-0"></a>
 ### 0.0.4-0 (2014-10-20)
 
