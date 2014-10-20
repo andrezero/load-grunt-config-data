@@ -10,6 +10,7 @@ before_install:
   - git config --global user.email "ci@cork-labs.org"
   - git config --global user.name "Travis CI"
 script:
+  - git remote set-url origin "https://${GH_TOKEN}@github.com/andrezero/load-grunt-config-data.git"
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
   - bin/ci.js
