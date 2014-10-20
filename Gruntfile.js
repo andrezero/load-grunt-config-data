@@ -94,6 +94,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('pre-release', [
         'git-is-clean',
+        'build',
         'bump-only:prerelease',
         'changelog',
         'bump-commit'
@@ -102,8 +103,11 @@ module.exports = function (grunt) {
     grunt.registerTask('ci-build', ['build']);
 
     grunt.registerTask('release', [
+        'git-is-clean',
         'build',
-        'bump'
+        'bump-only:patch',
+        'changelog',
+        'bump-commit'
     ]);
 
 };
