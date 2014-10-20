@@ -39,8 +39,6 @@
     "js-yaml": "~3.0.1"
   },
   "devDependencies": {
-    "colors": "~1.0.3",
-    "execSync": "~1.0.2",
     "grunt": "^0.4.2",
     "grunt-bump": "0.0.16",
     "grunt-cli": "^0.1.12",
@@ -48,8 +46,7 @@
     "grunt-conventional-changelog": "~1.1.0",
     "grunt-git-is-clean": "~0.1.1",
     "grunt-jsbeautifier": "~0.2.4",
-    "load-grunt-tasks": "~0.6.0",
-    "underscore": "~1.7.0"
+    "load-grunt-tasks": "~0.6.0"
   },
   "engines": {
     "node": ">=0.10.0"
