@@ -1,44 +1,11 @@
-<a name="0.0.6-0"></a>
-### 0.0.6-0 (2014-10-20)
+<a name="1.0.0"></a>
+### 0.1.0-0 (2014-10-20)
 
+#### Features
 
-<a name="0.0.5"></a>
-### 0.0.5 (2014-10-20)
+* **api:** BREAKING CHANGE: pass Grunt instance to module initialisation, not to load() and merge()
 
-
-#### Bug Fixes
-
-* **build:** deploying to npm ([50cd6202](http://github.com/andrezero/load-grunt-config-data/commit/50cd6202b565580a3a6b220f1fb3ee1d9beb18f9))
-
-
-
-
-#### Bug Fixes
-
-* **build:** squelch the message ([da930851](http://github.com/andrezero/load-grunt-config-data/commit/da93085156c3d8c2e53ae1f9d6858576c6b28775))
-
-
-<a name="0.0.4-1"></a>
-### 0.0.4-1 (2014-10-20)
-
-
-#### Bug Fixes
-
-* **build:** force travis remote to https to allow pushing ([3df6dcb8](http://github.com/andrezero/load-grunt-config-data/commit/3df6dcb8cd83d7c768861bdd680cce7a3f05baef))
-
-
-<a name="0.0.4-0"></a>
-### 0.0.4-0 (2014-10-20)
-
-
-#### Bug Fixes
-
-* **build:**
-  * missing pkg ([84398d0c](http://github.com/andrezero/load-grunt-config-data/commit/84398d0cdd570249791941b9cd1b9bb51a4ecd00))
-  * typo ([6b427fa5](http://github.com/andrezero/load-grunt-config-data/commit/6b427fa55eaf6e05033537279f6a0f757ab770f5))
-
-
-<a name="0.0.4-0"></a>
+<a name="0.4.0"></a>
 ### 0.0.4-0 (2014-10-20)
 
 
