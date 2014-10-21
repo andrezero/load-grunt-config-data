@@ -79,7 +79,7 @@ var loader = require('load-grunt-config-data')(grunt);
 
 #### + loader.load(file|files, [data]): object
 
-Loads all files that match `file|files`, merges everything and returns the result. 
+Loads all files that match `file|files`, merges everything and returns the result.
 
 The `files` argument can contain [globbing patterns](http://gruntjs.com/configuring-tasks#files). Examples:
 
@@ -89,7 +89,7 @@ The `files` argument can contain [globbing patterns](http://gruntjs.com/configur
   `bar/*.js`,     // + all js file in bar/
   `baz/**/*.js`,  // + all js files in baz/ and any sub-directory
   `!baz/qux.js`,  // except for this one, we don't like this one
-  `baz/quux.js`   // oh! and we want this one to be last 
+  `baz/quux.js`   // oh! and we want this one to be last
 ]
 ```
 
@@ -161,10 +161,10 @@ This function is provided with `grunt` and a clone of whatever data you pass to 
 ```javascript
 module.exports = function (grunt, data) {
 
-    // note that Grunt config is not yet initialized, so you can't rely 
+    // note that Grunt config is not yet initialized, so you can't rely
     // on methods like grunt.config() and grunt.task.exists()
 
-    // you can use the data you passed to load() or merge() to make decisions 
+    // you can use the data you passed to load() or merge() to make decisions
     // but modifying here has no side effects since it was deep cloned by the loader
 
     return {
@@ -344,10 +344,10 @@ and if there are 15 loaders already in npm, another one won't hurt.
 
 This module was very much inspired by [@creynders](https://github.com/creynders)'s
 [load-grunt-configs](https://github.com/creynders/load-grunt-configs) and
-[firstandthird](@firsthandthird)'s [load-grunt-config](https://github.com/firstandthird/load-grunt-config). 
+[firstandthird](@firsthandthird)'s [load-grunt-config](https://github.com/firstandthird/load-grunt-config).
 These have a lot of nice features, they have been around for long and are very popular out there.
 
-Special thanks to [Jaime Beneitez](https://github.com/ngbp/ngbp) for raising the standard on how to setup uniform
+Special thanks to [@JaimeBeneitez](https://github.com/JaimeBeneytez) for raising the standard on how to setup uniform
 grunt task configurations across our growing ecosystem of libraries and apps over at [EF CTX](https://github.com/EFEducationFirstMobile).
 
 
