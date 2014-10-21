@@ -20,16 +20,16 @@ Load/merge data from several files into your grunt configuration.
 You can do so directly in your `Gruntfile.js` file before you invoke `grunt.initConfig()`:
 
 ```javascript
-var loader = require('load-grunt-config-data');
+var loader = require('load-grunt-config-data')(grunt);
 
 // initialize config
 var config = {pkg: grunt.file.readJSON('./package.json')};
 
 // load configuration (if some file exports an fn() a deep clone of `config` is provided to it)
-grunt.util._.merge(config, loader.load(grunt, 'grunt/build.conf.js'));
+grunt.util._.merge(config, loader.load('grunt/build.conf.js'));
 
-// OR merge configuration (similiar as above, but the config object is extended with data loaded from files)
-loader.merge(grunt, 'grunt/tasks/**/*.js', config);
+// OR merge configuration (similiar as above, but config is extended with data loaded from files)
+loader.merge('grunt/tasks/**/*.js', config);
 
 // init config
 grunt.initConfig(config);
@@ -59,27 +59,47 @@ __These are the main goals behind this utility:__
 
 ### Methods
 
-#### Constructor()
+#### Constructor(grunt)
 
-__Returns:__
-
-`Object` - Module api.
-
-__Example:__
-
-```javascript
-var loader = require('load-grunt-config-data');
-```
-
-#### + loader.load(grunt, file|files, [data]): object
-
-Loads all files that match `file|files` files, merges everything and returns the result. A deep clone of the optional
-`data` argument is passed as a second argument to functions exported by loaded files.
+When requiring the module you need to provide it with the Grunt instance.
 
 __Arguments:__
 
 - __grunt__ : `Object` - Grunt instance.
-- __file|files__ : `String|Array` - One or more paths/files, may contain `glob` patterns, including `!negatives`.
+
+__Returns:__
+
+`Object` - The module api.
+
+__Example:__
+
+```javascript
+var loader = require('load-grunt-config-data')(grunt);
+```
+
+#### + loader.load(file|files, [data]): object
+
+Loads all files that match `file|files`, merges everything and returns the result. 
+
+The `files` argument can contain [globbing patterns](http://gruntjs.com/configuring-tasks#files). Examples:
+
+```javascript
+[
+  `foo/bar.js`,   // a specific file
+  `bar/*.js`,     // + all js file in bar/
+  `baz/**/*.js`,  // + all js files in baz/ and any sub-directory
+  `!baz/qux.js`,  // except for this one, we don't like this one
+  `baz/quux.js`   // oh! and we want this one to be last 
+]
+```
+
+The resulting set of files is _uniqued_.
+
+A deep clone of the optional `data` argument is passed as a second argument to functions exported by loaded files.
+
+__Arguments:__
+
+- __file|files__ : `String|Array` - One or more files/paths/globs.
 - __data__ : `Object` - Optional data you want to pass into functions exported by loaded files.
 
 __Returns:__
@@ -89,8 +109,8 @@ __Returns:__
 __Example:__
 
 ```javascript
-var loader = require('load-grunt-config-data');
-grunt.util._.merge(data, loader.load(grunt, ['files/**/*.js', 'fies/file.js']));
+var loader = require('load-grunt-config-data')(grunt);
+grunt.util._.merge(config, loader.load(['files/**/*.js', 'fies/file.js']));
 ```
 
 _Note: if several files define overlapping data the last files to be loaded override the previous. If order matters to
@@ -98,14 +118,13 @@ you, you can specify a file more than once, like in the example above. Worst cas
 in order to control which data prevails._
 
 
-#### + loader.merge(grunt, file|files, config, [data])
+#### + loader.merge(file|files, config, [data])
 
 Loads all files that match `file|files`, merges everything into the `config` argument. A deep clone of the optional
 `data` argument is passed as a second argument to functions exported by loaded files.
 
 __Arguments:__
 
-- __grunt__ : `Object` - Grunt instance.
 - __file|files__ : `String|Array` - One or more paths/files, may contain `glob` patterns, including `!negatives`.
 - __config__ : `Object` - Loaded data is merged into this object.
 - __data__ : `Object` - Optional data you want to pass into functions exported by loaded files.
@@ -113,8 +132,8 @@ __Arguments:__
 __Example:__
 
 ```javascript
-var loader = require('load-grunt-config-data');
-loader.merge(grunt, ['files/**/*.js', 'file.js'], config);
+var loader = require('load-grunt-config-data')(grunt);
+loader.merge(['files/**/*.js', 'file.js'], config);
 ```
 
 ### Config files
@@ -142,6 +161,12 @@ This function is provided with `grunt` and a clone of whatever data you pass to 
 ```javascript
 module.exports = function (grunt, data) {
 
+    // note that Grunt config is not yet initialized, so you can't rely 
+    // on methods like grunt.config() and grunt.task.exists()
+
+    // you can use the data you passed to load() or merge() to make decisions 
+    // but modifying here has no side effects since it was deep cloned by the loader
+
     return {
         changelog: {
             options: {
@@ -163,7 +188,7 @@ declared:
 ```javascript
 $ grunt something:something --verbose
 
-Loading grunt configs via "load-grunt-config-data" from 3 file(s).
+Util load-grunt-config-data: loading configuration from 3 file(s).
 Loading grunt/options/bump.js...OK
 + bump: [options]
 
@@ -171,11 +196,10 @@ Loading grunt/options/changelog.js...OK
 + bump: [changelog]
 
 Loading grunt/config/build.js...is fn(), invoking...OK
-+ clean: [build]
++ clean: [build, examples]
 + less: [build]
-+ copy: [vendors, src]
++ copy: [vendors, src, examples]
 + karma: [unit]
-+ shell: [coverage]
 ```
 
 ### Example
@@ -266,9 +290,9 @@ Use [`grunt.loadTasks()`](http://gruntjs.com/api/grunt.task#grunt.task.loadtasks
 
 ```javascript
 // load configs
-config = loader.load(grunt, 'grunt/build.conf.js');
-loader.merge(grunt, 'grunt/options/', config);
-loader.merge(grunt, 'grunt/config', config);
+config = loader.load(grunt/build.conf.js');
+loader.merge('grunt/options/', config);
+loader.merge('grunt/config', config);
 
 // init Grunt
 grunt.initConfig(config);
@@ -318,8 +342,13 @@ and if there are 15 loaders already in npm, another one won't hurt.
 
 ## Credits and Acknowlegdments
 
-Thank you [Jaime Beneitez](https://github.com/ngbp/ngbp) for raising the standard on how to setup uniform grunt task
-configurations across our growing ecosystem of libraries and apps over at [EF CTX](https://github.com/EFEducationFirst).
+This module was very much inspired by [@creynders](https://github.com/creynders)'s
+[load-grunt-configs](https://github.com/creynders/load-grunt-configs) and
+[firstandthird](@firsthandthird)'s [load-grunt-config](https://github.com/firstandthird/load-grunt-config). 
+These have a lot of nice features, they have been around for long and are very popular out there.
+
+Special thanks to [Jaime Beneitez](https://github.com/ngbp/ngbp) for raising the standard on how to setup uniform
+grunt task configurations across our growing ecosystem of libraries and apps over at [EF CTX](https://github.com/EFEducationFirstMobile).
 
 
 ## [MIT License](LICENSE-MIT)
