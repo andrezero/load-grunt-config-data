@@ -59,7 +59,19 @@ __These are the main goals behind this utility:__
 
 ### Methods
 
-#### load(grunt, file|files, [data]): object
+#### Constructor()
+
+__Returns:__
+
+`Object` - Module api.
+
+__Example:__
+
+```javascript
+var loader = require('load-grunt-config-data');
+```
+
+#### + loader.load(grunt, file|files, [data]): object
 
 Loads all files that match `file|files` files, merges everything and returns the result. A deep clone of the optional
 `data` argument is passed as a second argument to functions exported by loaded files.
@@ -86,7 +98,7 @@ you, you can specify a file more than once, like in the example above. Worst cas
 in order to control which data prevails._
 
 
-#### merge(grunt, file|files, config, [data])
+#### + loader.merge(grunt, file|files, config, [data])
 
 Loads all files that match `file|files`, merges everything into the `config` argument. A deep clone of the optional
 `data` argument is passed as a second argument to functions exported by loaded files.
@@ -301,6 +313,7 @@ and if there are 15 loaders already in npm, another one won't hurt.
 ## Roadmap
 
 - test coverage
+- BREAKING: refactor Constructor to accept Grunt as argument #1, refactor load() and merge() no need to pass Grunt again
 
 
 ## Credits and Acknowlegdments
