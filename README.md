@@ -1,4 +1,7 @@
-# load-grunt-config-data [![Build Status: Linux](http://img.shields.io/travis/andrezero/load-grunt-config-data/master.svg?style=flat-square)](https://travis-ci.org/andrezero/load-grunt-config-data) [![npm version](http://img.shields.io/npm/v/load-grunt-config-data.svg?style=flat-square)](https://npmjs.org/load-grunt-config-data)
+# load-grunt-config-data
+
+[![Build Status: Linux](http://img.shields.io/travis/andrezero/load-grunt-config-data/master.svg?style=flat-square)](https://travis-ci.org/andrezero/load-grunt-config-data)
+[![NPM version](http://img.shields.io/npm/v/load-grunt-config-data.svg?style=flat-square)](https://npmjs.org/load-grunt-config-data)
 
 > Grunt configuration utility: reads config data from files.
 
