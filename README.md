@@ -5,6 +5,10 @@
 
 > Grunt configuration utility: reads config data from files.
 
+## WARNING: This code is not maintained
+
+Very obvious - but due - WARNING. Time flies, the world revolves, grunt became gulp became webpack, yada yada. Good memories!
+
 
 ## Getting Started
 
